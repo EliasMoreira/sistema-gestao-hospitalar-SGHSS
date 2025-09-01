@@ -9,6 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { ConvenioEntity } from "./convenio.entity";
+import { UnidadeSaudeEntity } from "./unidade-saude.entity";
 import { UserEntity } from "./user.entity";
 
 @Entity({ name: "profissional_saude" })
@@ -30,6 +31,9 @@ export class ProfissionalSaudeEntity {
 
   @ManyToMany(() => ConvenioEntity, (c) => c.profissionalSaude)
   convenio?: ConvenioEntity[];
+
+  @ManyToMany(() => UnidadeSaudeEntity, (u) => u.profissionalSaude)
+  unidadeSaude?: UnidadeSaudeEntity[];
 
   @OneToOne(() => UserEntity, (user) => user.profissional, { cascade: true })
   @JoinColumn()
