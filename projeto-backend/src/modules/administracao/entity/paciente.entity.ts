@@ -1,3 +1,5 @@
+import { ConsultaEntity } from "src/modules/paciente/entity/consulta.entity";
+import { ExameAgendamentoEntity } from "src/modules/paciente/entity/exame-agendamento.entity";
 import {
   Column,
   CreateDateColumn,
@@ -5,6 +7,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -35,6 +38,12 @@ export class PacienteEntity {
   @OneToOne(() => UserEntity, (user) => user.paciente, { cascade: true })
   @JoinColumn()
   user: UserEntity;
+
+  @OneToMany(() => ConsultaEntity, (c) => c.paciente)
+  consulta: ConsultaEntity[];
+
+  @OneToMany(() => ExameAgendamentoEntity, (e) => e.paciente)
+  exameAgendamento: ExameAgendamentoEntity[];
 
   @CreateDateColumn({ name: "createdAt", nullable: false })
   createdAt: Date;

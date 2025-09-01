@@ -1,3 +1,4 @@
+import { ConsultaEntity } from "src/modules/paciente/entity/consulta.entity";
 import {
   Column,
   CreateDateColumn,
@@ -8,6 +9,7 @@ import {
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { ConvenioEntity } from "./convenio.entity";
@@ -52,6 +54,9 @@ export class UnidadeSaudeEntity {
   })
   @ManyToMany(() => ProfissionalSaudeEntity, (p) => p.unidadeSaude, { cascade: true })
   profissionalSaude: ProfissionalSaudeEntity[];
+
+  @OneToOne(() => ConsultaEntity, (c) => c.unidadeSaude)
+  consulta: ConsultaEntity;
 
   @CreateDateColumn({ name: "createdAt", nullable: false })
   createdAt: Date;

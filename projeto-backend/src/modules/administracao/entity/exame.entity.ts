@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { ExameAgendamentoEntity } from "src/modules/paciente/entity/exame-agendamento.entity";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "exame" })
 export class ExameEntity {
@@ -13,6 +14,9 @@ export class ExameEntity {
 
   @Column()
   custo: number;
+
+  @OneToMany(() => ExameAgendamentoEntity, (e) => e.exame)
+  exameAgendamento: ExameAgendamentoEntity[];
 
   @CreateDateColumn({ name: "createdAt", nullable: false })
   createdAt: Date;

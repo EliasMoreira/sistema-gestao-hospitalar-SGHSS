@@ -1,0 +1,32 @@
+import { Body, Controller, Post } from "@nestjs/common";
+import { ApiOkResponse, ApiOperation } from "@nestjs/swagger";
+import { ConsultaDto } from "./dto/consulta.dto";
+import { ExameAgendamentoDto } from "./dto/exame-agendamento.dto";
+import { ConsultaEntity } from "./entity/consulta.entity";
+import { ExameAgendamentoEntity } from "./entity/exame-agendamento.entity";
+import { PacienteService } from "./paciente.service";
+
+@Controller("paciente")
+export class PacienteController {
+  constructor(private readonly service: PacienteService) {}
+
+  @ApiOperation({ summary: "Cadastra uma consulta" })
+  @ApiOkResponse({
+    description: "Retorna a consulta salva",
+    type: ConsultaEntity,
+  })
+  @Post("/consulta")
+  async saveConsulta(@Body() dto: ConsultaDto) {
+    return await this.service.saveConsulta(dto);
+  }
+
+  @ApiOperation({ summary: "agenda um exame" })
+  @ApiOkResponse({
+    description: "Retorna o exame agendado",
+    type: ExameAgendamentoEntity,
+  })
+  @Post("/exame/agendar")
+  async agendarExame(@Body() dto: ExameAgendamentoDto) {
+    return await this.service.saveExameAgendamento(dto);
+  }
+}
