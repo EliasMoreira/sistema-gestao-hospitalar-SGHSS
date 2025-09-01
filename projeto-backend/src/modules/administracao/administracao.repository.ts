@@ -1,6 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { ConvenioEntity } from "./entity/convenio.entity";
+import { ExameEntity } from "./entity/exame.entity";
 import { LeitoEntity } from "./entity/leito.entity";
 import { PacienteEntity } from "./entity/paciente.entity";
 import { ProfissionalSaudeEntity } from "./entity/profissional-saude";
@@ -24,7 +25,9 @@ export class AdministracaoRepository {
     @Inject("SUPRIMENTO_REPOSITORY")
     private suprimentoRepository: Repository<SuprimentoEntity>,
     @Inject("USER_REPOSITORY")
-    private userRepository: Repository<UserEntity>
+    private userRepository: Repository<UserEntity>,
+    @Inject("EXAME_REPOSITORY")
+    private exameRepository: Repository<ExameEntity>
   ) {}
 
   async saveConvenio(convenio: ConvenioEntity) {
@@ -81,6 +84,42 @@ export class AdministracaoRepository {
 
   async findOneprofissionalSaude(id: number) {
     return await this.profissionalSaudeRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  async saveLeito(entity: LeitoEntity) {
+    return await this.leitoRepository.save(entity);
+  }
+
+  async findOneLeito(id: number) {
+    return await this.leitoRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  async saveSuprimento(entity: SuprimentoEntity) {
+    return await this.suprimentoRepository.save(entity);
+  }
+
+  async findOneSuprimento(id: number) {
+    return await this.suprimentoRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  async saveExame(entity: ExameEntity) {
+    return await this.exameRepository.save(entity);
+  }
+
+  async findOneExame(id: number) {
+    return await this.exameRepository.findOne({
       where: {
         id: id,
       },

@@ -9,7 +9,7 @@ export class ExameEntity {
   nome: string;
 
   @Column()
-  orientacoes: number;
+  orientacoes: string;
 
   @Column()
   custo: number;

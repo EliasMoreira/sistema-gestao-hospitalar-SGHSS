@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm";
 import { ConvenioEntity } from "./entity/convenio.entity";
+import { ExameEntity } from "./entity/exame.entity";
 import { LeitoEntity } from "./entity/leito.entity";
 import { PacienteEntity } from "./entity/paciente.entity";
 import { ProfissionalSaudeEntity } from "./entity/profissional-saude";
@@ -41,6 +42,11 @@ export const AdministracaoProviders = [
   {
     provide: "USER_REPOSITORY",
     useFactory: (dataSource: DataSource) => dataSource.getRepository(UserEntity),
+    inject: ["DATA_SOURCE"],
+  },
+  {
+    provide: "EXAME_REPOSITORY",
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(ExameEntity),
     inject: ["DATA_SOURCE"],
   },
 ];

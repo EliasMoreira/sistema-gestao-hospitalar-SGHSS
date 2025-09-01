@@ -2,11 +2,15 @@ import { Body, Controller, Post } from "@nestjs/common";
 import { ApiOkResponse, ApiOperation } from "@nestjs/swagger";
 import { AdministracaoService } from "./administracao.service";
 import { ConvenioDto } from "./dto/convenio.dto";
+import { ExameDto } from "./dto/exame.dto";
+import { LeitoDto } from "./dto/leito.dto";
 import { PacienteDto } from "./dto/paciente.dto";
 import { ProfissionalSaudeDto } from "./dto/profissional-saude.dto";
 import { UnidadeSaudeDto } from "./dto/unidade-saude.dto";
 import { UserDto } from "./dto/user.dto";
 import { ConvenioEntity } from "./entity/convenio.entity";
+import { ExameEntity } from "./entity/exame.entity";
+import { LeitoEntity } from "./entity/leito.entity";
 import { PacienteEntity } from "./entity/paciente.entity";
 import { ProfissionalSaudeEntity } from "./entity/profissional-saude";
 import { UnidadeSaudeEntity } from "./entity/unidade-saude.entity";
@@ -64,5 +68,25 @@ export class AdministracaoController {
   @Post("/profissional")
   async saveProfissionalSaude(@Body() dto: ProfissionalSaudeDto) {
     return await this.service.saveProfissionalSaude(dto);
+  }
+
+  @ApiOperation({ summary: "Cadastrar um leito" })
+  @ApiOkResponse({
+    description: "Retorna o leito salvo",
+    type: LeitoEntity,
+  })
+  @Post("/leito")
+  async saveLeito(@Body() dto: LeitoDto) {
+    return await this.service.saveLeito(dto);
+  }
+
+  @ApiOperation({ summary: "Cadastrar um exame" })
+  @ApiOkResponse({
+    description: "Retorna o exame salvo",
+    type: ExameEntity,
+  })
+  @Post("/exame")
+  async saveExame(@Body() dto: ExameDto) {
+    return await this.service.saveExame(dto);
   }
 }
