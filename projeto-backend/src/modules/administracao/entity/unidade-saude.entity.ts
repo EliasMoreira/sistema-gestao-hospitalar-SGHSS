@@ -1,0 +1,50 @@
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { ConvenioEntity } from "./convenio.entity";
+import { LeitoEntity } from "./leito.entity";
+import { SuprimentoEntity } from "./suprimento.entity";
+
+@Entity({ name: "unidade_saude" })
+export class UnidadeSaudeEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  endereco: string;
+
+  @Column()
+  telefone: string;
+
+  @Column()
+  estado: string;
+
+  @ManyToOne(() => ConvenioEntity, (c) => c.unidadeSaude)
+  @JoinColumn({ name: "idConvenio", referencedColumnName: "id" })
+  convenio: ConvenioEntity;
+
+  @OneToMany(() => SuprimentoEntity, (s) => s.unidadeSaude)
+  suprimento: SuprimentoEntity[];
+
+  @OneToMany(() => LeitoEntity, (l) => l.unidadeSaude)
+  leito: LeitoEntity[];
+
+  @CreateDateColumn({ name: "createdAt", nullable: false })
+  createdAt: Date;
+
+  @Column({ name: "createdBy", nullable: true })
+  createdBy?: string;
+
+  @DeleteDateColumn({ name: "deletedAt", nullable: false })
+  deletedAt: Date;
+
+  @Column({ name: "deletedBy", nullable: true })
+  deletedBy?: string;
+}
