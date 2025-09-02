@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import { ExameEntity } from "../administracao/entity/exame.entity";
 import { ProfissionalSaudeEntity } from "../administracao/entity/profissional-saude";
-import { UserEntity } from "../administracao/entity/user.entity";
+import { UserEntity } from "../auth/entity/user.entity";
 import { ConsultaEntity } from "../paciente/entity/consulta.entity";
 import { ExameAgendamentoEntity } from "../paciente/entity/exame-agendamento.entity";
 import { AgendaAtendimentoEntity } from "./entity/agenda-atendimento.entity";

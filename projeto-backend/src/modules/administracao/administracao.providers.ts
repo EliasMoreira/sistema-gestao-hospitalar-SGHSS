@@ -1,4 +1,5 @@
 import { DataSource } from "typeorm";
+import { UserEntity } from "../auth/entity/user.entity";
 import { ConvenioEntity } from "./entity/convenio.entity";
 import { ExameEntity } from "./entity/exame.entity";
 import { LeitoEntity } from "./entity/leito.entity";
@@ -6,7 +7,6 @@ import { PacienteEntity } from "./entity/paciente.entity";
 import { ProfissionalSaudeEntity } from "./entity/profissional-saude";
 import { SuprimentoEntity } from "./entity/suprimento.entity";
 import { UnidadeSaudeEntity } from "./entity/unidade-saude.entity";
-import { UserEntity } from "./entity/user.entity";
 
 export const AdministracaoProviders = [
   {

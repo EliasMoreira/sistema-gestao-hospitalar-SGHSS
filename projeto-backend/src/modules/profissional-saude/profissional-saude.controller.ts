@@ -1,5 +1,6 @@
-import { Body, Controller, Post } from "@nestjs/common";
-import { ApiOkResponse, ApiOperation } from "@nestjs/swagger";
+import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiOkResponse, ApiOperation } from "@nestjs/swagger";
+import { JwtAuthGuard } from "guards/jwt-auth.guard";
 import { AgendaAtendimentoDto } from "./dto/agenda.dto";
 import { LaudoDto } from "./dto/laudo.dto";
 import { ReceitaDto } from "./dto/receita.dto";
@@ -12,6 +13,8 @@ import { ProfissionalSaudeService } from "./profissional-saude.service";
 export class ProfissionalSaudeController {
   constructor(private readonly service: ProfissionalSaudeService) {}
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastra um laudo" })
   @ApiOkResponse({
     description: "Retorna o laudo salvo",
@@ -22,6 +25,8 @@ export class ProfissionalSaudeController {
     return await this.service.saveLaudo(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastra uma receita" })
   @ApiOkResponse({
     description: "Retorna a receita salva",
@@ -32,6 +37,8 @@ export class ProfissionalSaudeController {
     return await this.service.saveReceita(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastra um horario para atendimento" })
   @ApiOkResponse({
     description: "Retorna o horario salvo",

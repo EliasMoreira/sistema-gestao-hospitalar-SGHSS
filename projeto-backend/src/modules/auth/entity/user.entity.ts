@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { PacienteEntity } from "./paciente.entity";
-import { ProfissionalSaudeEntity } from "./profissional-saude";
+import { PacienteEntity } from "../../administracao/entity/paciente.entity";
+import { ProfissionalSaudeEntity } from "../../administracao/entity/profissional-saude";
 
 @Entity({ name: "user" })
 export class UserEntity {

@@ -11,8 +11,8 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { UserEntity } from "../../auth/entity/user.entity";
 import { ConvenioEntity } from "./convenio.entity";
-import { UserEntity } from "./user.entity";
 
 @Entity({ name: "paciente" })
 export class PacienteEntity {

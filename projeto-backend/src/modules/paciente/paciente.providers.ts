@@ -3,7 +3,7 @@ import { ExameEntity } from "../administracao/entity/exame.entity";
 import { PacienteEntity } from "../administracao/entity/paciente.entity";
 import { ProfissionalSaudeEntity } from "../administracao/entity/profissional-saude";
 import { UnidadeSaudeEntity } from "../administracao/entity/unidade-saude.entity";
-import { UserEntity } from "../administracao/entity/user.entity";
+import { UserEntity } from "../auth/entity/user.entity";
 import { ConsultaEntity } from "./entity/consulta.entity";
 import { ExameAgendamentoEntity } from "./entity/exame-agendamento.entity";
 

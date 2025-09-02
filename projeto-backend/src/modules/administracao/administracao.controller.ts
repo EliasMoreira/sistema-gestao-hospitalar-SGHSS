@@ -1,5 +1,7 @@
-import { Body, Controller, Post } from "@nestjs/common";
-import { ApiOkResponse, ApiOperation } from "@nestjs/swagger";
+import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiOkResponse, ApiOperation } from "@nestjs/swagger";
+import { JwtAuthGuard } from "guards/jwt-auth.guard";
+import { UserEntity } from "../auth/entity/user.entity";
 import { AdministracaoService } from "./administracao.service";
 import { ConvenioDto } from "./dto/convenio.dto";
 import { ExameDto } from "./dto/exame.dto";
@@ -14,12 +16,13 @@ import { LeitoEntity } from "./entity/leito.entity";
 import { PacienteEntity } from "./entity/paciente.entity";
 import { ProfissionalSaudeEntity } from "./entity/profissional-saude";
 import { UnidadeSaudeEntity } from "./entity/unidade-saude.entity";
-import { UserEntity } from "./entity/user.entity";
 
 @Controller("administracao")
 export class AdministracaoController {
   constructor(private readonly service: AdministracaoService) {}
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastra um convenio" })
   @ApiOkResponse({
     description: "Retorna o convenio salvo",
@@ -30,6 +33,8 @@ export class AdministracaoController {
     return await this.service.saveConvenio(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastrar uma unidade de saude" })
   @ApiOkResponse({
     description: "Retorna a unidade de saude salva",
@@ -40,6 +45,8 @@ export class AdministracaoController {
     return await this.service.saveUnidadeSaude(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastrar um paciente" })
   @ApiOkResponse({
     description: "Retorna o paciente",
@@ -60,6 +67,8 @@ export class AdministracaoController {
     return await this.service.saveUser(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastrar um profissional de saude" })
   @ApiOkResponse({
     description: "Retorna o profissional salvo",
@@ -70,6 +79,8 @@ export class AdministracaoController {
     return await this.service.saveProfissionalSaude(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastrar um leito" })
   @ApiOkResponse({
     description: "Retorna o leito salvo",
@@ -80,6 +91,8 @@ export class AdministracaoController {
     return await this.service.saveLeito(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastrar um exame" })
   @ApiOkResponse({
     description: "Retorna o exame salvo",

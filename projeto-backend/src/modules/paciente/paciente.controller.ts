@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
-import { ApiOkResponse, ApiOperation, ApiQuery } from "@nestjs/swagger";
+import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiQuery } from "@nestjs/swagger";
+import { JwtAuthGuard } from "guards/jwt-auth.guard";
 import { ConsultaDto } from "./dto/consulta.dto";
 import { ExameAgendamentoDto } from "./dto/exame-agendamento.dto";
 import { ConsultaEntity } from "./entity/consulta.entity";
@@ -10,6 +11,8 @@ import { PacienteService } from "./paciente.service";
 export class PacienteController {
   constructor(private readonly service: PacienteService) {}
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "Cadastra uma consulta" })
   @ApiOkResponse({
     description: "Retorna a consulta salva",
@@ -20,6 +23,8 @@ export class PacienteController {
     return await this.service.saveConsulta(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "agenda um exame" })
   @ApiOkResponse({
     description: "Retorna o exame agendado",
@@ -30,6 +35,8 @@ export class PacienteController {
     return await this.service.saveExameAgendamento(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "visualiza um exame" })
   @ApiQuery({ name: "idExameAgendamento", required: true, type: Number, description: "id do exame agendado" })
   @ApiOkResponse({
@@ -41,6 +48,8 @@ export class PacienteController {
     return await this.service.getExameAgendado(idAgendamento);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
   @ApiOperation({ summary: "visualiza uma consulta" })
   @ApiQuery({ name: "idConsulta", required: true, type: Number, description: "id da consulta agendada" })
   @ApiOkResponse({

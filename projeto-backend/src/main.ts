@@ -14,6 +14,16 @@ async function bootstrap() {
     .setTitle("Sistema Gestão Hospitalar")
     .setDescription("Api do sistema de gestão hospitalar")
     .setVersion("1.0")
+    .addBearerAuth(
+      {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+        name: "Authorization",
+        in: "header",
+      },
+      "JWT-auth" // nome do security scheme
+    )
     .addTag("SGHSS")
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);

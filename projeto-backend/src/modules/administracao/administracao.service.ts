@@ -4,6 +4,7 @@ import { BaseError } from "error/base-error";
 import { ConvenioError } from "error/messages/convenio";
 import { UnidadeSaudeError } from "error/messages/unidade-saude";
 import { UserError } from "error/messages/user";
+import { UserEntity } from "../auth/entity/user.entity";
 import { AdministracaoRepository } from "./administracao.repository";
 import { ConvenioDto } from "./dto/convenio.dto";
 import { ExameDto } from "./dto/exame.dto";
@@ -20,7 +21,6 @@ import { PacienteEntity } from "./entity/paciente.entity";
 import { ProfissionalSaudeEntity } from "./entity/profissional-saude";
 import { SuprimentoEntity } from "./entity/suprimento.entity";
 import { UnidadeSaudeEntity } from "./entity/unidade-saude.entity";
-import { UserEntity } from "./entity/user.entity";
 
 @Injectable()
 export class AdministracaoService {

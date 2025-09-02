@@ -5,9 +5,10 @@ import { AppService } from "./app.service";
 import { AdministracaoModule } from "./modules/administracao/administracao.module";
 import { PacienteModule } from "./modules/paciente/paciente.module";
 import { ProfissionalSaudeModule } from './modules/profissional-saude/profissional-saude.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [AdministracaoModule, DatabaseModule, PacienteModule, ProfissionalSaudeModule],
+  imports: [AdministracaoModule, DatabaseModule, PacienteModule, ProfissionalSaudeModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
