@@ -56,4 +56,8 @@ export class PacienteService {
 
     return await this.pacienteRepository.saveExameAgendamento(entity);
   }
+
+  async getExameAgendado(id: number) {
+    return this.pacienteRepository.getExameAgendado(id);
+  }
 }

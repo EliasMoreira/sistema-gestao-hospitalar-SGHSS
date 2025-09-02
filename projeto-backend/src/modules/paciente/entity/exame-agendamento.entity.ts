@@ -1,6 +1,7 @@
 import { ExameEntity } from "src/modules/administracao/entity/exame.entity";
 import { PacienteEntity } from "src/modules/administracao/entity/paciente.entity";
 import { ProfissionalSaudeEntity } from "src/modules/administracao/entity/profissional-saude";
+import { LaudoEntity } from "src/modules/profissional-saude/entity/laudo.entity";
 import {
   Column,
   CreateDateColumn,
@@ -8,6 +9,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { StatusExameEnum } from "../enum/status-exame.enum";
@@ -37,6 +39,10 @@ export class ExameAgendamentoEntity {
   @ManyToOne(() => ExameEntity, (e) => e.exameAgendamento)
   @JoinColumn({ name: "idExame", referencedColumnName: "id" })
   exame: ExameEntity;
+
+  @OneToOne(() => LaudoEntity, (l) => l.exameAgendamento, { cascade: true })
+  @JoinColumn({ name: "idLaudo", referencedColumnName: "id" })
+  laudo: LaudoEntity;
 
   @CreateDateColumn({ name: "createdAt", nullable: false })
   createdAt: Date;

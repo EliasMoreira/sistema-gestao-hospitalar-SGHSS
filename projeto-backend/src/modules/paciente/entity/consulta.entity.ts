@@ -1,6 +1,7 @@
 import { PacienteEntity } from "src/modules/administracao/entity/paciente.entity";
 import { ProfissionalSaudeEntity } from "src/modules/administracao/entity/profissional-saude";
 import { UnidadeSaudeEntity } from "src/modules/administracao/entity/unidade-saude.entity";
+import { ReceitaEntity } from "src/modules/profissional-saude/entity/receita.entity";
 import {
   Column,
   CreateDateColumn,
@@ -41,6 +42,9 @@ export class ConsultaEntity {
   @OneToOne(() => UnidadeSaudeEntity, (u) => u.consulta, { cascade: true })
   @JoinColumn({ name: "idUnidadeSaude", referencedColumnName: "id" })
   unidadeSaude: UnidadeSaudeEntity;
+
+  @OneToOne(() => ReceitaEntity, (r) => r.consulta)
+  receita: ReceitaEntity;
 
   @CreateDateColumn({ name: "createdAt", nullable: false })
   createdAt: Date;

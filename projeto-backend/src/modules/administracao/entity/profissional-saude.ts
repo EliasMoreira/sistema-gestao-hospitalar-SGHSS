@@ -1,5 +1,7 @@
 import { ConsultaEntity } from "src/modules/paciente/entity/consulta.entity";
 import { ExameAgendamentoEntity } from "src/modules/paciente/entity/exame-agendamento.entity";
+import { AgendaAtendimentoEntity } from "src/modules/profissional-saude/entity/agenda-atendimento.entity";
+import { ReceitaEntity } from "src/modules/profissional-saude/entity/receita.entity";
 import {
   Column,
   CreateDateColumn,
@@ -47,6 +49,12 @@ export class ProfissionalSaudeEntity {
 
   @OneToMany(() => ExameAgendamentoEntity, (e) => e.profissional)
   exameAgendamento: ExameAgendamentoEntity[];
+
+  @OneToMany(() => ReceitaEntity, (r) => r.profissional)
+  receita: ReceitaEntity[];
+
+  @OneToOne(() => AgendaAtendimentoEntity, (at) => at.profissional)
+  agenda: AgendaAtendimentoEntity;
 
   @CreateDateColumn({ name: "createdAt", nullable: false })
   createdAt: Date;

@@ -74,4 +74,41 @@ export class PacienteRepository {
       },
     });
   }
+
+  async getExameAgendado(id: number) {
+    return await this.exameAgendamentoRepository.findOne({
+      where: {
+        id: id,
+      },
+      relations: {
+        exame: true,
+        laudo: true,
+        paciente: true,
+        profissional: true,
+      },
+      select: {
+        id: true,
+        dataRealizacao: true,
+        dataSolicitacao: true,
+        status: true,
+        profissional: {
+          id: true,
+          nome: true,
+        },
+        paciente: {
+          id: true,
+          nome: true,
+        },
+        exame: {
+          id: true,
+          nome: true,
+          orientacoes: true,
+        },
+        laudo: {
+          id: true,
+          resultado: true,
+        },
+      },
+    });
+  }
 }
