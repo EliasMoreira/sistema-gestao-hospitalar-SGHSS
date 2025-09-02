@@ -43,6 +43,7 @@ export class AdministracaoService {
     entity.endereco = dto.endereco;
     entity.telefone = dto.telefone;
     entity.estado = dto.estado;
+    entity.nome = dto.nome;
     return this.administracaoRepository.saveUnidadeSaude(entity);
   }
 

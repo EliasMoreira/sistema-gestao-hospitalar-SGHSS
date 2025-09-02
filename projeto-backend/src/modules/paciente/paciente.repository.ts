@@ -111,4 +111,42 @@ export class PacienteRepository {
       },
     });
   }
+
+  async findConsulta(id: number) {
+    return await this.consultaRepository.findOne({
+      where: {
+        id: id,
+      },
+      relations: {
+        paciente: true,
+        profissional: true,
+        receita: true,
+        unidadeSaude: true,
+      },
+      select: {
+        id: true,
+        data: true,
+        hora: true,
+        status: true,
+        tipo: true,
+        paciente: {
+          id: true,
+          nome: true,
+        },
+        profissional: {
+          id: true,
+          nome: true,
+        },
+        receita: {
+          id: true,
+          descricao: true,
+        },
+        unidadeSaude: {
+          id: true,
+          endereco: true,
+          nome: true,
+        },
+      },
+    });
+  }
 }

@@ -60,4 +60,8 @@ export class PacienteService {
   async getExameAgendado(id: number) {
     return this.pacienteRepository.getExameAgendado(id);
   }
+
+  async visualizarConsulta(id: number) {
+    return this.pacienteRepository.findConsulta(id);
+  }
 }

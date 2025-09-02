@@ -23,6 +23,9 @@ export class UnidadeSaudeEntity {
   id: number;
 
   @Column()
+  nome: string;
+
+  @Column()
   endereco: string;
 
   @Column()

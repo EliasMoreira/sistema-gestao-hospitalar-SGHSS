@@ -40,4 +40,15 @@ export class PacienteController {
   async visualizarExame(@Query("idExameAgendamento") idAgendamento: number) {
     return await this.service.getExameAgendado(idAgendamento);
   }
+
+  @ApiOperation({ summary: "visualiza uma consulta" })
+  @ApiQuery({ name: "idConsulta", required: true, type: Number, description: "id da consulta agendada" })
+  @ApiOkResponse({
+    description: "Retorna a consulta agendada",
+    type: ExameAgendamentoEntity,
+  })
+  @Get("/consulta/visualizar")
+  async visualizarConsulta(@Query("idConsulta") idConsulta: number) {
+    return await this.service.visualizarConsulta(idConsulta);
+  }
 }

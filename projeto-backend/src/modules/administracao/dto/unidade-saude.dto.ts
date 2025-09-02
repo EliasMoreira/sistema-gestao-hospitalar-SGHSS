@@ -6,6 +6,10 @@ export class UnidadeSaudeDto {
   @IsString()
   endereco: string;
 
+  @ApiProperty({ example: "unidade cidade nova" })
+  @IsString()
+  nome: string;
+
   @ApiProperty({ example: "(11) 3333-4444" })
   @IsString()
   telefone: string;
